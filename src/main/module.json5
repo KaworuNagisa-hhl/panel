@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "panel",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}
