@@ -4,7 +4,7 @@ import { getSwiftUIGlassMaterial, SwiftUITone } from 'theme'
 export default function localUnitTest() {
   describe('SwiftUIPanel', () => {
     it('uses_glass_material_contract', 0, () => {
-      const material = getSwiftUIGlassMaterial(SwiftUITone.CareGreen)
+      const material = getSwiftUIGlassMaterial(SwiftUITone.PureWhite)
       expect(material.fill.toString()).assertContain('#')
       expect(material.highlight.toString()).assertContain('#')
       expect(material.blurRadius >= 20).assertTrue()

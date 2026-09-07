@@ -5,6 +5,7 @@ import {
   SWIFT_UI_SPACING_MEDIUM,
   SWIFT_UI_SPACING_SMALL,
   swiftUIColorWithOpacity,
+  SwiftUIComponentConfig,
   SwiftUITone
 } from 'theme'
 
@@ -15,6 +16,7 @@ function EmptyBuilder() {
 
 @Component
 export struct SwiftUIPanel {
+  @Prop config: SwiftUIComponentConfig = new SwiftUIComponentConfig()
   @Prop spacing: number = SWIFT_UI_SPACING_MEDIUM
   @Prop accentColor: ResourceColor = '#00000000'
   @Prop showAccent: boolean = false
@@ -32,16 +34,65 @@ export struct SwiftUIPanel {
   @State panelHeight: number = 0
   @BuilderParam contentBuilder: () => void = EmptyBuilder
 
+  private resolvedTone(): SwiftUITone {
+    return this.config.tone === undefined ? this.tone : this.config.tone
+  }
+
+  private resolvedSpacing(): number {
+    return this.config.spacing === undefined ? this.spacing : this.config.spacing
+  }
+
+  private resolvedWidth(): Length {
+    return this.config.width === undefined ? this.componentWidth : this.config.width
+  }
+
+  private resolvedHeight(): Length {
+    return this.config.height === undefined ? this.componentHeight : this.config.height
+  }
+
+  private resolvedFillColor(): ResourceColor {
+    return this.config.fillColor === undefined ? this.fillColor : this.config.fillColor
+  }
+
+  private resolvedCornerRadius(): number {
+    return this.config.cornerRadius === undefined ? this.cornerRadius : this.config.cornerRadius
+  }
+
+  private resolvedBorderWidth(): number {
+    return this.config.borderWidth === undefined ? this.customBorderWidth : this.config.borderWidth
+  }
+
+  private resolvedContentPadding(): number {
+    return this.config.contentPadding === undefined ? this.contentPadding : this.config.contentPadding
+  }
+
   private resolvedTintColor(): ResourceColor {
-    return this.tintColor === '#00000000' ? getSwiftUIGlassMaterial(this.tone).tint : this.tintColor
+    if (this.config.tintColor) {
+      return this.config.tintColor
+    }
+    return this.tintColor === '#00000000' ? getSwiftUIGlassMaterial(this.resolvedTone()).tint : this.tintColor
   }
 
   private resolvedBorderColor(): ResourceColor {
-    return this.customBorderColor === '#00000000' ? getSwiftUIGlassMaterial(this.tone).border : this.customBorderColor
+    if (this.config.borderColor) {
+      return this.config.borderColor
+    }
+    return this.customBorderColor === '#00000000' ? getSwiftUIGlassMaterial(this.resolvedTone()).border : this.customBorderColor
   }
 
   private resolvedShadowColor(): ResourceColor {
-    return this.shadowColor === '#00000000' ? getSwiftUIGlassMaterial(this.tone).shadow : this.shadowColor
+    if (this.config.shadowColor) {
+      return this.config.shadowColor
+    }
+    return this.shadowColor === '#00000000' ? getSwiftUIGlassMaterial(this.resolvedTone()).shadow : this.shadowColor
+  }
+
+  private resolvedShadowRadius(): number {
+    return this.config.shadowRadius === undefined ? this.shadowRadius : this.config.shadowRadius
+  }
+
+  private resolvedAccentColor(): ResourceColor {
+    return this.config.accentColor === undefined ? this.accentColor : this.config.accentColor
   }
 
   build() {
@@ -49,27 +100,27 @@ export struct SwiftUIPanel {
       Row()
         .width('100%')
         .height(1)
-        .backgroundColor(getSwiftUIGlassMaterial(this.tone).highlight)
+      .backgroundColor(getSwiftUIGlassMaterial(this.resolvedTone()).highlight)
         .opacity(0.86)
 
-      Column({ space: this.spacing }) {
+      Column({ space: this.resolvedSpacing() }) {
         this.contentBuilder()
       }
       .width('100%')
-      .padding({ left: this.contentPadding, right: this.contentPadding, top: SWIFT_UI_SPACING_SMALL, bottom: SWIFT_UI_SPACING_SMALL })
-      .backgroundColor(this.fillColor)
+      .padding({ left: this.resolvedContentPadding(), right: this.resolvedContentPadding(), top: SWIFT_UI_SPACING_SMALL, bottom: SWIFT_UI_SPACING_SMALL })
+      .backgroundColor(this.resolvedFillColor())
       .linearGradient({
         direction: GradientDirection.RightBottom,
         colors: [
-          [this.fillColor, 0.0],
-          [this.fillColor, 0.56],
-          [this.showAccent ? swiftUIColorWithOpacity(this.accentColor, 0.16) : this.resolvedTintColor(), 1.0]
+          [this.resolvedFillColor(), 0.0],
+          [this.resolvedFillColor(), 0.56],
+          [this.showAccent ? swiftUIColorWithOpacity(this.resolvedAccentColor(), 0.16) : this.resolvedTintColor(), 1.0]
         ]
       })
       .backgroundBlurStyle(BlurStyle.Regular)
-      .borderRadius(this.cornerRadius)
-      .border({ width: this.customBorderWidth, color: this.resolvedBorderColor() })
-      .shadow({ radius: this.shadowRadius, color: this.resolvedShadowColor(), offsetX: 0, offsetY: 10 })
+      .borderRadius(this.resolvedCornerRadius())
+      .border({ width: this.resolvedBorderWidth(), color: this.resolvedBorderColor() })
+      .shadow({ radius: this.resolvedShadowRadius(), color: this.resolvedShadowColor(), offsetX: 0, offsetY: 10 })
       .onAreaChange((oldArea, newArea) => {
         this.panelHeight = Number(newArea.height)
       })
@@ -78,12 +129,12 @@ export struct SwiftUIPanel {
         Row()
           .width(3)
           .height(Math.max(0, this.panelHeight - SWIFT_UI_SPACING_MEDIUM * 2))
-          .backgroundColor(this.accentColor)
+          .backgroundColor(this.resolvedAccentColor())
           .borderRadius(2)
           .margin({ left: 0, top: SWIFT_UI_SPACING_MEDIUM })
       }
     }
-    .width(this.componentWidth)
-    .height(this.componentHeight)
+    .width(this.resolvedWidth())
+    .height(this.resolvedHeight())
   }
 }
