@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "OpenHarmony/HarmonyOS ArkUI like-ios 毛玻璃圆角面板组件，支持强调色竖线和自定义内容 Builder。默认黑色优先的纯色毛玻璃风格，支持自定义颜色/宽高/圆角。",
   "main": "Index.ets",
-  "author": "Zuolin",
+  "author": { "name": "Zuolin", "url": "https://github.com/KaworuNagisa-hhl" },
   "license": "Apache-2.0",
   "repository": "https://github.com/KaworuNagisa-hhl/panel",
   "keywords": [
