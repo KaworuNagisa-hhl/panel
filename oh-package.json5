@@ -1,8 +1,8 @@
 {
   "modelVersion": "6.0.2",
   "name": "panel",
-  "version": "1.0.1",
-  "description": "OpenHarmony/HarmonyOS ArkUI like-ios 毛玻璃圆角面板组件，支持强调色竖线和自定义内容 Builder。本次 1.0.1 补齐 homepage、example 示例目录与更清晰的 README 发布说明。",
+  "version": "1.0.2",
+  "description": "OpenHarmony/HarmonyOS ArkUI like-ios 毛玻璃圆角面板组件，支持强调色竖线和自定义内容 Builder。提供 homepage、example 示例目录与清晰的 README 使用说明。",
   "main": "Index.ets",
   "author": { "name": "KaworuNagisa-hhl", "url": "https://github.com/KaworuNagisa-hhl" },
   "homepage": "https://github.com/KaworuNagisa-hhl/panel",

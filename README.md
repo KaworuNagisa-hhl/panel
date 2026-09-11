@@ -14,16 +14,6 @@
 ohpm install panel
 ```
 
-本地源码依赖：
-
-```json5
-{
-  "dependencies": {
-    "panel": "file:../panel",
-    "theme": "file:../theme"
-  }
-}
-```
 
 ## 正常使用样式
 
