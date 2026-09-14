@@ -96,6 +96,20 @@ SwiftUIPanel({
 
 完整最小示例见 `example/SwiftUIPanelUsage.ets`。该示例演示了强调色面板、内容 Builder 和基础文字布局，适合复制到业务页后继续替换内容。
 
+## 颜色与风格预设
+
+`SwiftUITone` 继续保持三个基础颜色枚举：`GlassBlack`、`PureWhite`、`SystemGray`。如果业务希望更快套用品牌风格，可以从 `theme` 引入 `SwiftUIBrandStyle` 与 `swiftUIConfigForStyle()`，当前提供 `Graphite`、`Mist`、`Ocean`、`Mint`、`Amber`、`Rose`、`Lavender` 七组预设。预设只是快捷入口，仍可继续叠加 `withFillColor()`、`withTintColor()`、`withColor()`、`withAccentColor()`、`withBorder()`、`withShadow()`、`withRadius()`、`withPadding()`、`withSize()`、`withTitleFontSize()`、`withSubtitleFontSize()`、`withTextFontSize()`、`withIconSize()`、`withSpacing()` 等链式方法做高度自定义。
+
+```ts
+import { SwiftUIBrandStyle, swiftUIConfigForStyle } from 'theme'
+
+const oceanStyle = swiftUIConfigForStyle(SwiftUIBrandStyle.Ocean)
+  .withRadius(8)
+  .withPadding(14)
+  .withBorder('#6657C7F7', 1.2)
+  .withShadow('#241D4ED8', 20)
+```
+
 ## API
 
 | 参数 | 类型 | 默认值 | 说明 |
