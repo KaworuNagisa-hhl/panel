@@ -1,4 +1,4 @@
-import { SwiftUIPanel } from 'panel'
+import { SwiftUIPanel } from '@kaworunagisa_hhl/panel'
 
 @Component
 export struct SwiftUIPanelUsage {
