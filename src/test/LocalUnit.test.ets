@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@ohos/hypium'
-import { getSwiftUIGlassMaterial, SwiftUITone } from '@kaworunagisa_hhl/theme'
+import { getSwiftUIGlassMaterial, SwiftUITone } from 'theme'
 
 export default function localUnitTest() {
   describe('SwiftUIPanel', () => {

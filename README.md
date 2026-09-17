@@ -11,15 +11,15 @@
 ## 安装
 
 ```bash
-ohpm install @kaworunagisa_hhl/panel
+ohpm install panel
 ```
 
 
 ## 正常使用样式
 
 ```ts
-import { SwiftUIPanel } from '@kaworunagisa_hhl/panel'
-import { SwiftUITone } from '@kaworunagisa_hhl/theme'
+import { SwiftUIPanel } from 'panel'
+import { SwiftUITone } from 'theme'
 
 @Builder
 function TaskSummaryContent() {
@@ -72,7 +72,7 @@ SwiftUIPanel({
 ## SwiftUI 风格链式配置
 
 ```ts
-import { swiftUIConfig, SwiftUITone } from '@kaworunagisa_hhl/theme'
+import { swiftUIConfig, SwiftUITone } from 'theme'
 
 const glassStyle = swiftUIConfig()
   .withTone(SwiftUITone.SystemGray)
@@ -101,7 +101,7 @@ SwiftUIPanel({
 `SwiftUITone` 继续保持三个基础颜色枚举：`GlassBlack`、`PureWhite`、`SystemGray`。如果业务希望更快套用品牌风格，可以从 `theme` 引入 `SwiftUIBrandStyle` 与 `swiftUIConfigForStyle()`，当前提供 `Graphite`、`Mist`、`Ocean`、`Mint`、`Amber`、`Rose`、`Lavender` 七组预设。预设只是快捷入口，仍可继续叠加 `withFillColor()`、`withTintColor()`、`withColor()`、`withAccentColor()`、`withBorder()`、`withShadow()`、`withRadius()`、`withPadding()`、`withSize()`、`withTitleFontSize()`、`withSubtitleFontSize()`、`withTextFontSize()`、`withIconSize()`、`withSpacing()` 等链式方法做高度自定义。
 
 ```ts
-import { SwiftUIBrandStyle, swiftUIConfigForStyle } from '@kaworunagisa_hhl/theme'
+import { SwiftUIBrandStyle, swiftUIConfigForStyle } from 'theme'
 
 const oceanStyle = swiftUIConfigForStyle(SwiftUIBrandStyle.Ocean)
   .withRadius(8)

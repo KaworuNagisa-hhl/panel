@@ -7,7 +7,7 @@ import {
   swiftUIColorWithOpacity,
   SwiftUIComponentConfig,
   SwiftUITone
-} from '@kaworunagisa_hhl/theme'
+} from 'theme'
 
 @Builder
 function EmptyBuilder() {
